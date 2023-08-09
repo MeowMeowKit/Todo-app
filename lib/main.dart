@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -92,7 +90,7 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> persistData() async {
+  Future<void> persistData(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final taskListJson = prefs.getString('tasks');
     if (taskListJson != null) {
